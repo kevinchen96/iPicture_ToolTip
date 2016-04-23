@@ -8,13 +8,8 @@ body {
     background-size: cover;
     height: 270px;
     padding-bottom: 250px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
-
-#nav-upload {
-    font-size: 1.5em;
-    
-} 
 
 hr {
     width: 73%;
@@ -29,7 +24,7 @@ hr {
 
 #intro-header {
     font-style: italic;
-    margin-top: 0;
+    margin-top: 12px;
 }
 
 h1 {
@@ -39,4 +34,21 @@ h1 {
 p {
     font-size: 1.9em;
     line-height: 1.8em;
+}
+
+#nav-upload {
+    font-size: 1.5em;
+    margin-top: 10px;
+    padding: 20px 70px;
+    display: block;
+    border: 1px solid #f04d30;
+} 
+
+a:hover {
+    text-decoration: none !important; 
+}
+
+#nav-upload:hover {
+    background-color: #f04d30 !important;
+    color: white;
 }
