@@ -16,28 +16,31 @@
     <script type="text/javascript" src="js/jQuery.iPicture.js"></script>
     <script>
     var config = {
-            animation: true,
-            animationBg: "bgblack",
-            animationType:"ltr-slide",
-            pictures: ["picture1","picture2","picture3","picture4","picture5"],
-            button: "moreblack",
-            moreInfos:{"picture1":[{"id":"tooltip1","descr":"furniture: 299$","top":"185px","left":"393px"},{"id":"tooltip2","descr":"sofa: 199$","top":"346px","left":"483px"},{"id":"tooltip3","descr":"silver candle: 2.99$","top":"461px","left":"556px"}],"picture2":[{"id":"tooltip4","descr":"window","top":"71px","left":"423px"},{"id":"tooltip5","descr":"basket","top":"438px","left":"192px"},{"id":"tooltip6","descr":"hoven","top":"460px","left":"673px"}],"picture3":[{"id":"tooltip7","descr":"Organize the kitchen!","top":"391px","left":"560px"},{"id":"tooltip8","descr":"Hoven: 399$","top":"160px","left":"268px"},{"id":"tooltip9","descr":"chest of drawers","top":"386px","left":"180px"}],"picture4":[{"id":"tooltip10","descr":"pasta maker","top":"277px","left":"672px"},{"id":"tooltip11","descr":"stool","top":"291px","left":"281px"},{"id":"tooltip12","descr":"shelf","top":"144px","left":"579px"},{"id":"tooltip13","descr":"Dishes","top":"183px","left":"181px"}],"picture5":[{"id":"tooltip14","descr":"bed: 199$","top":"398px","left":"351px"},{"id":"tooltip15","descr":"asian style lamp","top":"146px","left":"380px"},{"id":"tooltip16","descr":"console: 105$","top":"273px","left":"567px"}]}
-        };
+        animation: true,
+        animationBg: "bgblack",
+        animationType:"ltr-slide",
+        pictures: ["image"],
+        button: "moreblack"
+    };
     var globalVar;
     var base;
-    jQuery(document).ready(function(){
-        base = $("#iPicture").clone();
-        $( "#iPicture" ).iPicture(config);
-    });
+    var imgUrl;
+
+jQuery(document).ready(function(){
+    base = $("#iPicture").clone();
+    $( "#iPicture" ).iPicture(config);
+});
     function setGlobalVar(value) {
 
         $('#iPicture').replaceWith(base.clone());
+        document.getElementById("image").style.background = "url('" + imgUrl + "') no-repeat scroll 0 0 #393737";
         $( "#iPicture" ).iPicture(value);
         config = value;
 
     }
     function modify(){
         $('#iPicture').replaceWith(base.clone());
+        document.getElementById("image").style.background = "url('" + imgUrl + "') no-repeat scroll 0 0 #393737";
         config.modify = true;
         config.animation = true;
         $( "#iPicture" ).iPicture(config);
@@ -46,6 +49,7 @@
 
     function displayAll(){
         $('#iPicture').replaceWith(base.clone());
+       document.getElementById("image").style.background = "url('" + imgUrl + "') no-repeat scroll 0 0 #393737";
         config.modify = false;
         config.animation = false;
         $( "#iPicture" ).iPicture(config);
@@ -53,9 +57,23 @@
     }
 
     function clearAll(){
-        console.log("hi");
         $('#iPicture').replaceWith(base.clone());
+        document.getElementById("image").style.background = "url('" + imgUrl + "') no-repeat scroll 0 0 #393737";
         $("#iPicture").iPicture();
+        config.moreInfos = {};
+    }
+
+    function upload(input){
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                imgUrl = e.target.result;
+                document.getElementById("image").style.background = "url('" + imgUrl + "') no-repeat scroll 0 0 #393737";
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
     }
     </script>
 </head>
@@ -64,20 +82,22 @@
     <div class="jumbotron"></div>
         <div class="container">
             <div class="gif pull-left" style="margin-top: -10px;">
-                <iframe src="//giphy.com/embed/26AHImHaR7oOrVlPG" width="550" height="454" frameBorder="0"></iframe><p><a href="http://giphy.com/gifs/26AHImHaR7oOrVlPG"></a></p>
+                <iframe src="//giphy.com/embed/26AHImHaR7oOrVlPG" width="550" height="454" class="giphy-embed" allowFullScreen frameBorder="0"></iframe><p><a href="http://giphy.com/gifs/26AHImHaR7oOrVlPG"></a></p>
             </div>
             <div id="intro">
                 <h1 id="intro-header">Plan, save, shop</h1>
                 <p>Trying to decorate? Upload a picture of your space and use tooltips to label your plans. When you're done, show all tooltips and take a screenshot. Use your plans to help you shop and share your vision with others.</p>
                 <a href="#upload">
-                    <input type="button" class="btn btn-default center-block" id="nav-upload" value="UPLOAD"></input>
+                    <input onchange="upload(this)" type="file" accept="image/*" class="center-block" id="nav-upload" value="UPLOAD"></input>
                 </a>
             </div><!--./intro-->
             <div class="clearfix"></div>
             <hr>
             <div class="edit-view">.
                 <a name="upload"></a>
-                <p>eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher eituherituher </p>
+                <div id="iPicture">
+                    <div class="slide"><div id="image" style="width: 900px; height: 528px;position: relative; margin:0 auto;"></div></div><br/>
+                </div>
             </div><!--./edit-view-->
         </div><!--./container-->
 </body>

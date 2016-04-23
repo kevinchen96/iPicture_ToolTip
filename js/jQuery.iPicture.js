@@ -35,14 +35,11 @@
 		if(self.options.initialize){
 			this.initialization();
 		}else{
-					 $('<input type="button" value="show all" id="displayButton" title="get code!"/>').prependTo(self.element);
+		$('<input type="button" value="show all" id="displayButton" title="get code!"/>').appendTo(self.element);
 
-			$('<input type="button" value="clear" id="clearButton" title="get code!"/>').prependTo(self.element);
-		// $('<input type="button" value="clear" id="clearButton" title="get code!"/>').appendTo(self.element);
-	
+		$('<input type="button" value="clear" id="clearButton" title="get code!"/>').appendTo(self.element);
 		
-		 $('<input type="button" value="edit" id="changeButton" title="get code!"/>').prependTo(self.element);
-		// $('<input type="button" value="edit" id="clearButton" title="get code!"/>').appendTo(self.element);
+		$('<input type="button" value="edit" id="changeButton" title="get code!"/>').appendTo(self.element);
 		
 		$('#displayButton').bind('click', function() {
 			displayAll();
@@ -53,60 +50,56 @@
 		});
 
 		$('#changeButton').bind('click', function() {
-			console.log("he");
 			if(document.getElementById("changeButton").value == "edit"){
 				modify();
 				return;
 			}
-		var moreInfos = {};
-		var allPictures = [];
-			//each picture
-		$.each(self.options.pictures, function( index, value ) {
-			var picture = $( '#'+value );
-			var divs = $(picture).find('.more32');
-			
-			// each more infos on that picture
-			var picks = [];
-			$.each(divs, function( index, value ){
-				var pick = {};				
-				descr=$(value).find('input').val();
-				topPosition=$(value).css('top');
-				leftPosition=$(value).css('left');
-				pick.id = value.id;
-				pick.descr = descr;
-				pick.top = topPosition;
-				pick.left = leftPosition;
-				picks.push(pick);
+			var moreInfos = {};
+			var allPictures = [];
+				//each picture
+			$.each(self.options.pictures, function( index, value ) {
+				var picture = $( '#'+value );
+				var divs = $(picture).find('.more32');
+				
+				// each more infos on that picture
+				var picks = [];
+				$.each(divs, function( index, value ){
+					var pick = {};				
+					descr=$(value).find('input').val();
+					topPosition=$(value).css('top');
+					leftPosition=$(value).css('left');
+					pick.id = value.id;
+					pick.descr = descr;
+					pick.top = topPosition;
+					pick.left = leftPosition;
+					picks.push(pick);
 
+				});
+				moreInfos[value] = picks;
+				allPictures.push(value);
 			});
-			moreInfos[value] = picks;
-			allPictures.push(value);
-		});
-		var test = {};
-		if(self.options.animation){
-			test = {
-				"animation": true,
-				"animationType": self.options.animationType,
-				"button": self.options.button,
-				"pictures": allPictures,
-				"moreInfos": moreInfos,
-				"initialize": false,
-				"modify":false,
-			}
-			
-		  // alert('animation: true, animationType: "'+self.options.animationType+'", animationBg: "'+self.options.animationBg+'", button: "'+self.options.button+'", '+moreInfos);
-		}else{
-			test = {
-				"animation": false,
-				"button": self.options.button,
-				"pictures": allPictures,
-				"moreInfos": moreInfos
-			}
+			var test = {};
+			if(self.options.animation){
+				test = {
+					"animation": true,
+					"animationType": self.options.animationType,
+					"button": self.options.button,
+					"pictures": allPictures,
+					"moreInfos": moreInfos,
+					"initialize": false,
+					"modify":false,
+				}
+				
+			  }else{
+				test = {
+					"animation": false,
+					"button": self.options.button,
+					"pictures": allPictures,
+					"moreInfos": moreInfos
+				}
 
-		  // alert('animation: false, button: "'+self.options.button+'", '+moreInfos);
-		}
-		// self.destroy();
-		setGlobalVar(test);
+			}
+			setGlobalVar(test);
 		});
 
 
@@ -355,19 +348,7 @@
 				}
 			});
 		});
-		// if(self.options.initialize){
-		// 	$('<div class="buttonSave"><p>Initialization mode</p><input type="button" value="save" class="save" title="get code!"/></div>').prependTo(self.element);
-		// 	$('<div class="buttonSave"><p>Initialization mode</p><input type="button" value="save" class="save" title="get code!"/></div>').appendTo(self.element);
-		// }
-		// if(self.options.modify){
-		// 	$('<div class="buttonSave"><p>Modify mode</p><input type="button" value="save" class="save" title="get code!"/></div>').prependTo(self.element);
-		// 	$('<div class="buttonSave"><p>Modify mode</p><input type="button" value="save" class="save" title="get code!"/></div>').appendTo(self.element);
-		// }
-
-
-			// $('<div class="buttonSave"><p>Modify mode</p><input type="button" value="save" class="save" title="get code!"/></div>').prependTo(self.element);
-			// $('<div class="buttonSave"><p>Modify mode</p><input type="button" value="save" class="save" title="get code!"/></div>').appendTo(self.element);
-			},
+	},
 	
 	// Use the _setOption method to respond to changes to options
 	
@@ -382,8 +363,6 @@
 	// Use the destroy method to clean up any modifications your widget has made to the DOM
 	destroy: function() {
 		// In jQuery UI 1.8, you must invoke the destroy method from the base widget
-		// var self = this;
-		// 		 $(".more").removeClass(self.options.animationBg);
 		$.Widget.prototype.destroy.call( this );
 
 		// In jQuery UI 1.9 and above, you would define _destroy instead of destroy and not call the base method
