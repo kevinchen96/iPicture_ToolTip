@@ -62,7 +62,7 @@
         config.modify = true;
         config.animation = true;
         $( "#iPicture" ).iPicture(config);
-        document.getElementById("changeButton").value = "save";
+        document.getElementById("changeButton").value = "Save";
     }
 
     //set default, change config modify and animation to false, add class bgblack
@@ -100,6 +100,12 @@
             reader.readAsDataURL(input.files[0]);
         }
     }
+        
+    function showButtons() {
+        document.getElementById('displayButton').style.display = "inline-block";
+        document.getElementById('clearButton').style.display = "inline-block";
+        document.getElementById('changeButton').style.display = "inline-block";
+    }
     </script>
 </head>
 
@@ -113,7 +119,8 @@
                 <h1 id="intro-header">Plan, save, shop</h1>
                 <p>Trying to decorate? Upload a picture of your space and use tooltips to label your plans. When you're done, show all tooltips and take a screenshot. Use your plans to help you shop and share your vision with others.</p>
                 <a href="#upload">
-                    <input onchange="upload(this)" type="file" accept="image/*" class="center-block" id="nav-upload" value="UPLOAD"></input>
+                    <label for="file-upload" class="custom-file-upload">UPLOAD</label>
+                    <input id="file-upload" onclick="showButtons()" type="file" onchange="upload(this)" accept="image/*" class="center-block" style="display: none;"/>
                 </a>
             </div><!--./intro-->
             <div class="clearfix"></div>
@@ -121,7 +128,9 @@
             <div class="edit-view">.
                 <a name="upload"></a>
                 <div id="iPicture">
-                    <div class="slide"><div id="image" style="position: relative; margin:0 auto;"></div></div><br/>
+                    <div class="slide">
+                        <div id="image" style="position: relative; margin:0 auto;"></div>
+                    </div><br/>
                 </div>
                 <img id="invisibleimg"></div>
             </div><!--./edit-view-->
