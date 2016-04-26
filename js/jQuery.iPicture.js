@@ -52,7 +52,7 @@
 
 		$('#changeButton').bind('click', function() {
 			//if not already in modify state, modify
-			if(document.getElementById("changeButton").value == "edit"){
+			if(document.getElementById("changeButton").value == "Edit"){
 				modify();
 				return;
 			}

@@ -51,6 +51,7 @@
         $('#iPicture').replaceWith(base.clone());
         setDefaults();
         $( "#iPicture" ).iPicture(value);
+                showButtons();
         config = value;
 
     }
@@ -62,6 +63,7 @@
         config.modify = true;
         config.animation = true;
         $( "#iPicture" ).iPicture(config);
+                showButtons();
         document.getElementById("changeButton").value = "Save";
     }
 
@@ -72,6 +74,7 @@
         config.modify = false;
         config.animation = false;
         $( "#iPicture" ).iPicture(config);
+                showButtons();
         $(".more").addClass("bgblack");
     }
 
@@ -80,6 +83,7 @@
         $('#iPicture').replaceWith(base.clone());
         setDefaults();
         $("#iPicture").iPicture();
+        showButtons();
         config.moreInfos = {};
     }
 
