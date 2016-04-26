@@ -343,10 +343,10 @@
 		      }
 		      //workaround for firefox issue on trimming border-radius content
 		      $(".more32").css('overflow','visible');
-					var imgButton = $('<div class="imgButtonDrag '+self.options.button+'" title="drag in the picture"></div>').appendTo(div);
+					var imgButton = $('<div class="imgButtonDrag '+self.options.button+'" ></div>').appendTo(div);
 					var divInput = $('<div clas="inputDiv"></div>').insertAfter(imgButton);
-					var input = $('<input type="text" title="type here this tooltip"/>').appendTo(divInput).focus();
-					$('<p class="pDelete" title="delete this tooltip"></p>').insertAfter(input).bind('click', function() {
+					var input = $('<input type="text" />').appendTo(divInput).focus();
+					$('<p class="pDelete" ></p>').insertAfter(input).bind('click', function() {
 					  $(div).remove();
 					});
 				}
