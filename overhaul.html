@@ -99,6 +99,7 @@
                 document.getElementById("image").style.width = width;
                 document.getElementById("image").style.height = height;
                 document.getElementById("invisibleimg").src = "";
+                showButtons();
             };
 
             reader.readAsDataURL(input.files[0]);
@@ -124,7 +125,7 @@
                 <p>Trying to decorate? Upload a picture of your space and use tooltips to label your plans. When you're done, show all tooltips and take a screenshot. Use your plans to help you shop and share your vision with others.</p>
                 <a href="#upload">
                     <label for="file-upload" class="custom-file-upload">UPLOAD</label>
-                    <input id="file-upload" onclick="showButtons()" type="file" onchange="upload(this)" accept="image/*" class="center-block" style="display: none;"/>
+                    <input id="file-upload" type="file" onchange="upload(this)" accept="image/*" class="center-block" style="display: none;"/>
                 </a>
             </div><!--./intro-->
             <div class="clearfix"></div>

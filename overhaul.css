@@ -74,6 +74,10 @@ a, a:hover, a:active, a:visited {
     cursor: pointer;
 }
 
+#changeButton {
+    margin-left: 280px;
+}
+
 #displayButton:hover, #changeButton:hover, #clearButton:hover {
     color: white;
     background-color: #f04d30;
