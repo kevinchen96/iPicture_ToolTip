@@ -4,7 +4,7 @@ body {
 }
 
 .jumbotron {
-    background: url("banner.jpg") no-repeat; 
+    background: url("banner.gif") no-repeat; 
     background-size: cover;
     height: 270px;
     padding-bottom: 250px;
