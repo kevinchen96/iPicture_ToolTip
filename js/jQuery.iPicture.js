@@ -37,9 +37,9 @@
 		}else{
 
 		//on create, create the 3 buttons
-		$('<input type="button" value="Show all" id="displayButton" />').appendTo(self.element);
-		$('<input type="button" value="Clear" id="clearButton" />').appendTo(self.element);	
-		$('<input type="button" value="Edit" id="changeButton" />').appendTo(self.element);
+		$('<input type="button" value="show all" id="displayButton" title="get code!"/>').appendTo(self.element);
+		$('<input type="button" value="clear" id="clearButton" title="get code!"/>').appendTo(self.element);	
+		$('<input type="button" value="edit" id="changeButton" title="get code!"/>').appendTo(self.element);
 		
 		$('#displayButton').bind('click', function() {
 			displayAll();
