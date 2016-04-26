@@ -1,3 +1,4 @@
+
 body {
     font-family: "Libre Baskerville", serif;
     position: relative;
@@ -6,15 +7,12 @@ body {
 .jumbotron {
     background: url("banner.jpg") no-repeat; 
     background-size: cover;
-    height: 270px;
-    padding-bottom: 250px;
-    margin-bottom: 20px;
+    height: 290px;
+    padding-bottom: 280px;
 }
 
-hr {
-    width: 73%;
-    margin-top: 40px;
-    margin-bottom: 50px;
+iframe {
+    margin-top: 10px;
 }
 
 #intro {
@@ -36,19 +34,50 @@ p {
     line-height: 1.8em;
 }
 
-#nav-upload {
-    font-size: 1.5em;
-    margin-top: 10px;
-    padding: 20px 70px;
-    display: block;
-    border: 1px solid #f04d30;
-} 
+/* File upload */
 
-a:hover {
-    text-decoration: none !important; 
+#file-upload {
+    display: none;
 }
 
-#nav-upload:hover {
+.custom-file-upload {
+    text-align: center;
+    border: 1px solid #f04d30;
+    display: inline-block;
+    padding: 20px 70px;
+    margin-top: 10px;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #f04d30;
+}
+
+.custom-file-upload:hover {
     background-color: #f04d30 !important;
     color: white;
 }
+
+a, a:hover, a:active, a:visited {
+    text-decoration: none !important;
+}
+
+a:hover {
+    color: white;
+}
+
+ /* Buttons */
+#displayButton, #clearButton, #changeButton {
+    border: 1px solid #f04d30;
+    background-color: white;
+    color: #f04d30;
+    padding: 10px 61px;
+    font-size: 1.9em;
+    cursor: pointer;
+    margin-right: 20px;
+    display: none;
+}
+
+#displayButton:hover, #clearButton:hover, #changeButton:hover {
+    background-color: #f04d30;
+    color: white;
+}
+
