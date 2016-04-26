@@ -15,6 +15,8 @@
     <script type="text/javascript" src="js/jquery-ui-1.8.16.custom.min.js"></script>
     <script type="text/javascript" src="js/jQuery.iPicture.js"></script>
     <script>
+
+    //initial config
     var config = {
         animation: true,
         animationBg: "bgblack",
@@ -22,43 +24,61 @@
         pictures: ["image"],
         button: "moreblack"
     };
-    var globalVar;
+    // base DOM structure for iPicture
     var base;
+    //img url from upload
     var imgUrl;
 
-jQuery(document).ready(function(){
-    base = $("#iPicture").clone();
-    $( "#iPicture" ).iPicture(config);
-});
-    function setGlobalVar(value) {
+    //image height and width
+    var width;
+    var height;
 
-        $('#iPicture').replaceWith(base.clone());
+    //on load set up iPicture's base configs and clone base
+    jQuery(document).ready(function(){
+        base = $("#iPicture").clone();
+        $( "#iPicture" ).iPicture(config);
+    });
+
+    //set defaults of picture, width, height
+    function setDefaults(){
         document.getElementById("image").style.background = "url('" + imgUrl + "') no-repeat scroll 0 0 #393737";
+        document.getElementById("image").style.width = width;
+        document.getElementById("image").style.height = height;
+    }
+
+    //save configs
+    function save(value) {
+        $('#iPicture').replaceWith(base.clone());
+        setDefaults();
         $( "#iPicture" ).iPicture(value);
         config = value;
 
     }
+
+    //set default, change config modify and animation to true
     function modify(){
         $('#iPicture').replaceWith(base.clone());
-        document.getElementById("image").style.background = "url('" + imgUrl + "') no-repeat scroll 0 0 #393737";
+        setDefaults();
         config.modify = true;
         config.animation = true;
         $( "#iPicture" ).iPicture(config);
         document.getElementById("changeButton").value = "save";
     }
 
+    //set default, change config modify and animation to false, add class bgblack
     function displayAll(){
         $('#iPicture').replaceWith(base.clone());
-       document.getElementById("image").style.background = "url('" + imgUrl + "') no-repeat scroll 0 0 #393737";
+       setDefaults();
         config.modify = false;
         config.animation = false;
         $( "#iPicture" ).iPicture(config);
         $(".more").addClass("bgblack");
     }
 
+    //set default, clear config moreinfos
     function clearAll(){
         $('#iPicture').replaceWith(base.clone());
-        document.getElementById("image").style.background = "url('" + imgUrl + "') no-repeat scroll 0 0 #393737";
+        setDefaults();
         $("#iPicture").iPicture();
         config.moreInfos = {};
     }
@@ -66,10 +86,15 @@ jQuery(document).ready(function(){
     function upload(input){
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-
             reader.onload = function (e) {
                 imgUrl = e.target.result;
                 document.getElementById("image").style.background = "url('" + imgUrl + "') no-repeat scroll 0 0 #393737";
+                document.getElementById("invisibleimg").src = imgUrl;
+                width = document.getElementById("invisibleimg").clientWidth + "px";
+                height = document.getElementById("invisibleimg").clientHeight + "px";
+                document.getElementById("image").style.width = width;
+                document.getElementById("image").style.height = height;
+                document.getElementById("invisibleimg").src = "";
             };
 
             reader.readAsDataURL(input.files[0]);
@@ -96,8 +121,9 @@ jQuery(document).ready(function(){
             <div class="edit-view">.
                 <a name="upload"></a>
                 <div id="iPicture">
-                    <div class="slide"><div id="image" style="width: 900px; height: 528px;position: relative; margin:0 auto;"></div></div><br/>
+                    <div class="slide"><div id="image" style="position: relative; margin:0 auto;"></div></div><br/>
                 </div>
+                <img id="invisibleimg"></div>
             </div><!--./edit-view-->
         </div><!--./container-->
 </body>

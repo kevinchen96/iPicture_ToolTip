@@ -35,10 +35,10 @@
 		if(self.options.initialize){
 			this.initialization();
 		}else{
-		$('<input type="button" value="show all" id="displayButton" title="get code!"/>').appendTo(self.element);
 
-		$('<input type="button" value="clear" id="clearButton" title="get code!"/>').appendTo(self.element);
-		
+		//on create, create the 3 buttons
+		$('<input type="button" value="show all" id="displayButton" title="get code!"/>').appendTo(self.element);
+		$('<input type="button" value="clear" id="clearButton" title="get code!"/>').appendTo(self.element);	
 		$('<input type="button" value="edit" id="changeButton" title="get code!"/>').appendTo(self.element);
 		
 		$('#displayButton').bind('click', function() {
@@ -50,10 +50,13 @@
 		});
 
 		$('#changeButton').bind('click', function() {
+			//if not already in modify state, modify
 			if(document.getElementById("changeButton").value == "edit"){
 				modify();
 				return;
 			}
+			
+			//else save
 			var moreInfos = {};
 			var allPictures = [];
 				//each picture
@@ -99,7 +102,7 @@
 				}
 
 			}
-			setGlobalVar(test);
+			save(test);
 		});
 
 
